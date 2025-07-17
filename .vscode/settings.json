@@ -1,0 +1,10 @@
+
+// vscode/settings.json
+
+{
+    "terminal.integrated.env.osx": {
+      "AWS_SHARED_CREDENTIALS_FILE": "${workspaceFolder}/.aws/credentials",
+      "AWS_CONFIG_FILE": "${workspaceFolder}/.aws/config"
+    },
+    "python.defaultInterpreterPath": "${workspaceFolder}/.venv/bin/python"
+  }
