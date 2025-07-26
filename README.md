@@ -88,3 +88,7 @@ my-aws-project/
 ## npm起動
 - $ npm run dev
 
+
+
+# DB接続確認コマンド
+- $ uv run python -m app.scripts.test_crud

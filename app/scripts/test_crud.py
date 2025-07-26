@@ -1,6 +1,7 @@
 # test_crud.py - CRUD操作のテストスクリプト
-from app.infrastructure.db import get_db
-from app.domain.book_service import BookService
+from ..infrastructure.db import get_db
+from ..domain.book_service import BookService
+from ..domain.book import Book
 
 def test_crud_operations():
     """CRUD操作を順番にテストする"""
@@ -11,6 +12,12 @@ def test_crud_operations():
     
     print("📚 CRUD操作テスト開始！\n")
     
+    # テスト用データをクリア
+    print("🗑️ テスト用データをクリア中...")
+    db.query(Book).delete()
+    db.commit()
+    print("✅ クリア完了！\n")
+    
     # =========================
     # CREATE - 本を作成
     # =========================
@@ -18,7 +25,7 @@ def test_crud_operations():
     book1 = book_service.create_book(
         title="Python入門",
         author="山田太郎",
-        isbn="978-4-12345-678-9",
+        isbn="978-4-12345-678-8",
         description="Pythonの基礎から応用まで学べる本です",
         pages=300,
         published_year=2023
@@ -28,7 +35,7 @@ def test_crud_operations():
     book2 = book_service.create_book(
         title="FastAPI実践ガイド", 
         author="佐藤花子",
-        isbn="978-4-98765-432-1",
+        isbn="978-4-98765-432-2",
         pages=250,
         published_year=2024
     )
@@ -45,7 +52,7 @@ def test_crud_operations():
     print(f"   ID {book1.id} の本: {found_book.title}")
     
     # ISBNで取得
-    found_by_isbn = book_service.get_book_by_isbn("978-4-98765-432-1")
+    found_by_isbn = book_service.get_book_by_isbn("978-4-98765-432-2")
     print(f"   ISBN検索: {found_by_isbn.title}")
     
     # 著者で検索

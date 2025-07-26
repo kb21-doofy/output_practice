@@ -1,7 +1,7 @@
 # create_tables.py - テーブル作成スクリプト
-from app.core.database import Base
-from app.domain.book import Book  # モデルをインポートしてBaseに登録
-from app.infrastructure.db import engine
+from ..core.database import Base
+from ..domain.book import Book  # モデルをインポートしてBaseに登録
+from ..infrastructure.db import engine
 
 def create_tables():
     """すべてのテーブルを作成"""
