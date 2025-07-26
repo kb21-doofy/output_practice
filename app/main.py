@@ -1,9 +1,11 @@
 # app/main.py
 from fastapi import FastAPI
-from app.api.v1 import book  # ルーター
+from api.book import book  
+from api.user import user  
 
 app = FastAPI()
-app.include_router(book.router, prefix="/api/v1/books")
+app.include_router(book.router, prefix="/api/books")
+app.include_router(user.router, prefix="/api/users") 
 
 @app.get("/")
 def root():
