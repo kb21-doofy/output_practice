@@ -20,7 +20,7 @@
 my-aws-project/
 ├── Dockerfile                 # アプリケーションのDockerイメージ定義
 ├── README.md                  # プロジェクト概要・運用方法
-├── app/                       # FastAPIアプリケーション
+├── app/                       # FastAPIアプリケーション（バックエンド）
 │   ├── api/                   # API エンドポイント
 │   │   └── v1/
 │   │       └── book.py        # 書籍API
@@ -42,13 +42,49 @@ my-aws-project/
 ├── create_tables.py           # データベーステーブル作成
 ├── docker-compose.yml         # Docker Compose設定
 ├── main.py                    # アプリケーションメイン
+├── package-lock.json          # npm依存関係ロック（ルート）
 ├── pyproject.toml             # Pythonプロジェクト設定
 ├── templates/                 # テンプレートファイル
 ├── terraform/                 # Terraformファイル（未使用）
 ├── test_crud.py               # CRUD操作テスト
+├── ts/                        # TypeScript/React アプリケーション（フロントエンド）
+│   ├── README.md              # フロントエンド用README
+│   ├── eslint.config.js       # ESLint設定
+│   ├── index.html             # エントリーポイントHTML
+│   ├── node_modules/          # npm依存関係
+│   ├── package-lock.json      # npm依存関係ロック
+│   ├── package.json           # npm設定
+│   ├── public/                # 静的ファイル
+│   │   └── vite.svg           # Viteロゴ
+│   ├── src/                   # Reactソースコード
+│   │   ├── App.css            # アプリケーションスタイル
+│   │   ├── App.tsx            # メインアプリケーションコンポーネント
+│   │   ├── assets/            # 静的アセット
+│   │   │   └── react.svg      # Reactロゴ
+│   │   ├── index.css          # グローバルスタイル
+│   │   ├── main.tsx           # Reactエントリーポイント
+│   │   └── vite-env.d.ts      # Vite型定義
+│   ├── tsconfig.app.json      # TypeScript設定（アプリケーション）
+│   ├── tsconfig.json          # TypeScript設定（ベース）
+│   ├── tsconfig.node.json     # TypeScript設定（Node.js）
+│   └── vite.config.ts         # Vite設定
 ├── uv.lock                    # uv依存関係ロック
 └── views/                     # ビューファイル
 ```
 
-# uv環境起動
+# バックエンド
+
+## uv環境起動
 - $ source .venv/bin/activate
+
+
+
+
+# フロントエンド
+
+## npmのinstall
+- $ npm install
+
+## npm起動
+- $ npm run dev
+
