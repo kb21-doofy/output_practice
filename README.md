@@ -14,7 +14,41 @@
 
 
 
+# ディレクトリ構成
+
+```
+my-aws-project/
+├── Dockerfile                 # アプリケーションのDockerイメージ定義
+├── README.md                  # プロジェクト概要・運用方法
+├── app/                       # FastAPIアプリケーション
+│   ├── api/                   # API エンドポイント
+│   │   └── v1/
+│   │       └── book.py        # 書籍API
+│   ├── core/                  # コア機能
+│   │   └── database.py        # データベース設定
+│   ├── domain/                # ドメインロジック
+│   │   ├── book.py            # 書籍モデル
+│   │   └── book_service.py    # 書籍サービス
+│   ├── infrastructure/        # インフラ層
+│   │   ├── db.py              # データベース接続
+│   │   └── test_connection.py # 接続テスト
+│   └── main.py                # FastAPIアプリケーション起動
+├── cfn/                       # CloudFormationテンプレート
+│   ├── 01_vpc.yml             # VPC作成
+│   ├── 02_ec2.yml             # EC2インスタンス作成
+│   ├── 02_ec2_userdata.sh     # EC2初期化スクリプト
+│   ├── 03_rds.yml             # RDS作成
+│   └── 04_elb.yml             # ELB作成
+├── create_tables.py           # データベーステーブル作成
+├── docker-compose.yml         # Docker Compose設定
+├── main.py                    # アプリケーションメイン
+├── pyproject.toml             # Pythonプロジェクト設定
+├── templates/                 # テンプレートファイル
+├── terraform/                 # Terraformファイル（未使用）
+├── test_crud.py               # CRUD操作テスト
+├── uv.lock                    # uv依存関係ロック
+└── views/                     # ビューファイル
+```
+
 # uv環境起動
 - $ source .venv/bin/activate
-
-#
