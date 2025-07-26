@@ -1,7 +1,7 @@
 # app/main.py
 from fastapi import FastAPI
 from api.book import book  
-from api.user import user  
+from api.user import user
 
 app = FastAPI()
 app.include_router(book.router, prefix="/api/books")
