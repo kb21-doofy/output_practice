@@ -1,7 +1,7 @@
 # app/domain/book_service.py
 from typing import List, Optional
 from sqlalchemy.orm import Session
-from app.domain.book import Book
+from .book import Book
 
 class BookService:
     """本に関するデータベース操作をまとめたサービスクラス"""

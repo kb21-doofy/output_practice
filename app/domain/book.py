@@ -1,6 +1,6 @@
 # app/domain/book.py
 from sqlalchemy import Column, String, Text, Integer, Boolean
-from app.core.database import BaseModel
+from core.database import BaseModel
 
 class Book(BaseModel):
     """本のモデル"""

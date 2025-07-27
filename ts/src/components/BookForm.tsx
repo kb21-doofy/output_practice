@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Book, CreateBookRequest, UpdateBookRequest } from '../types/Book';
+import type { Book, CreateBookRequest, UpdateBookRequest } from '../types/Book';
 import { bookAPI } from '../services/api';
 import './BookForm.css';
 
