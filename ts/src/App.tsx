@@ -34,9 +34,14 @@ function App() {
     <div className="app">
       <header className="app-header">
         <h1>📚 本管理システム</h1>
-        <button className="add-book-btn" onClick={handleAddBook}>
-          + 新しい本を追加
-        </button>
+        <div className="header-actions">
+          <button className="login-btn" onClick={() => alert('ログイン機能は未実装です')}>
+            ログイン
+          </button>
+          <button className="add-book-btn" onClick={handleAddBook}>
+            + 新しい本を追加
+          </button>
+        </div>
       </header>
 
       <main>
