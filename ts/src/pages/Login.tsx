@@ -31,19 +31,33 @@ const Login: React.FC = () => {
     setError(null);
 
     try {
-      // TODO: 実際のログイン処理をここに実装
-      // 現在は仮のログイン処理
-      await new Promise(resolve => setTimeout(resolve, 1000)); // 1秒待機
-      
-      // 仮のログイン成功処理
-      if (formData.email === 'admin@example.com' && formData.password === 'password') {
-        alert('ログイン成功！');
+      // 実際のログインAPI呼び出し
+      const response = await fetch('http://localhost:8000/api/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: formData.email,
+          password: formData.password
+        })
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        // ログイン成功
+        localStorage.setItem('access_token', data.access_token);
+        localStorage.setItem('user', JSON.stringify(data.user));
+        alert(`ログイン成功！ようこそ、${data.user.name}さん`);
         navigate('/'); // メインページに遷移
       } else {
-        setError('メールアドレスまたはパスワードが間違っています');
+        // ログイン失敗
+        setError(data.detail || 'ログインに失敗しました');
       }
     } catch (err) {
-      setError('ログインに失敗しました');
+      console.error('ログインエラー:', err);
+      setError('サーバーとの通信に失敗しました');
     } finally {
       setLoading(false);
     }
