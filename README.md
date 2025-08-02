@@ -96,6 +96,20 @@ my-aws-project/
 - $ npm run dev
 
 
+# データベース
 
-# DB接続確認コマンド
+## 接続確認コマンド
 - $ uv run python -m app.scripts.test_crud
+
+## postgret起動
+- $  psql -U postgres -d booklog
+
+## テーブル一覧表示する
+- \dt   
+
+## テーブル定義確認
+- \d {テーブル名}
+
+## データベース変更
+- \c {データベース名}
+
