@@ -77,7 +77,14 @@ my-aws-project/
 ## uv環境起動
 - $ source .venv/bin/activate
 
+## FastAPI起動コマンド
+- $ uvicorn main:app --reload
 
+## uv ライブラリ追加
+- uv add <パッケージ名>
+
+## pyproject.tomlを見て依存パッケージを同期
+- uv sync
 
 
 # フロントエンド
