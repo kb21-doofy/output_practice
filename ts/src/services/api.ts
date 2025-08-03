@@ -45,4 +45,16 @@ export const bookAPI = {
     const response = await api.get(`/api/books/search?q=${encodeURIComponent(query)}`);
     return response.data;
   },
+
+  // 本を貸し出し（1週間）
+  borrowBook: async (id: number): Promise<Book> => {
+    const response = await api.post(`/api/books/${id}/borrow`);
+    return response.data;
+  },
+
+  // 本を返却
+  returnBook: async (id: number): Promise<Book> => {
+    const response = await api.post(`/api/books/${id}/return`);
+    return response.data;
+  },
 };

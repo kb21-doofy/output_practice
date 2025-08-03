@@ -1,5 +1,6 @@
 # app/domain/book_service.py
 from typing import List, Optional
+from datetime import datetime, timedelta
 from sqlalchemy.orm import Session
 from .book import Book
 
@@ -82,3 +83,37 @@ class BookService:
     def get_available_books(self) -> List[Book]:
         """利用可能な本のみ取得"""
         return self.db.query(Book).filter(Book.is_available == True).all()
+    
+    # 貸し出し・返却機能
+    def borrow_book(self, book_id: int) -> Optional[Book]:
+        """本を貸し出し（1週間）"""
+        book = self.get_book_by_id(book_id)
+        if not book:
+            return None
+        
+        # 既に貸し出し中の場合はエラー
+        if not book.is_available:
+            return None
+        
+        # 1週間後の日付を設定
+        borrowed_until = datetime.now() + timedelta(weeks=1)
+        
+        book.is_available = False
+        book.borrowed_until = borrowed_until
+        
+        self.db.commit()
+        self.db.refresh(book)
+        return book
+    
+    def return_book(self, book_id: int) -> Optional[Book]:
+        """本を返却"""
+        book = self.get_book_by_id(book_id)
+        if not book:
+            return None
+        
+        book.is_available = True
+        book.borrowed_until = None
+        
+        self.db.commit()
+        self.db.refresh(book)
+        return book

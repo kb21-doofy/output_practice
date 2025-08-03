@@ -1,5 +1,5 @@
 # app/domain/book.py
-from sqlalchemy import Column, String, Text, Integer, Boolean
+from sqlalchemy import Column, String, Text, Integer, Boolean, DateTime
 from core.database import BaseModel
 
 class Book(BaseModel):
@@ -18,6 +18,7 @@ class Book(BaseModel):
     
     # ステータス
     is_available = Column(Boolean, default=True)            # 利用可能かどうか
+    borrowed_until = Column(DateTime, nullable=True)        # 貸し出し期限
     
     def __repr__(self):
         """オブジェクトの文字列表現"""

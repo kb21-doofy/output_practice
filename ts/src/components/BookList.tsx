@@ -62,6 +62,30 @@ const BookList: React.FC<BookListProps> = ({ onEditBook, refreshTrigger }) => {
     }
   };
 
+  const handleBorrow = async (id: number) => {
+    try {
+      const updatedBook = await bookAPI.borrowBook(id);
+      setBooks(books.map(book => 
+        book.id === id ? updatedBook : book
+      ));
+    } catch (err) {
+      setError('貸し出しに失敗しました');
+      console.error('Error borrowing book:', err);
+    }
+  };
+
+  const handleReturn = async (id: number) => {
+    try {
+      const updatedBook = await bookAPI.returnBook(id);
+      setBooks(books.map(book => 
+        book.id === id ? updatedBook : book
+      ));
+    } catch (err) {
+      setError('返却に失敗しました');
+      console.error('Error returning book:', err);
+    }
+  };
+
   useEffect(() => {
     fetchBooks();
   }, [refreshTrigger]);
@@ -107,6 +131,8 @@ const BookList: React.FC<BookListProps> = ({ onEditBook, refreshTrigger }) => {
               book={book}
               onEdit={() => onEditBook(book)}
               onDelete={() => handleDelete(book.id)}
+              onBorrow={handleBorrow}
+              onReturn={handleReturn}
             />
           ))
         )}

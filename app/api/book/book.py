@@ -73,6 +73,7 @@ def create_book(book_data: BookCreate, db: Session = Depends(get_db)):
         "pages": book.pages,
         "published_year": book.published_year,
         "is_available": book.is_available,
+        "borrowed_until": book.borrowed_until.isoformat() if book.borrowed_until else None,
         "created_at": book.created_at.isoformat() if book.created_at else None,
         "updated_at": book.updated_at.isoformat() if book.updated_at else None,
     }
@@ -95,6 +96,7 @@ def get_book(book_id: int, db: Session = Depends(get_db)):
         "pages": book.pages,
         "published_year": book.published_year,
         "is_available": book.is_available,
+        "borrowed_until": book.borrowed_until.isoformat() if book.borrowed_until else None,
         "created_at": book.created_at.isoformat() if book.created_at else None,
         "updated_at": book.updated_at.isoformat() if book.updated_at else None,
     }
@@ -133,6 +135,7 @@ def update_book(book_id: int, book_data: BookUpdate, db: Session = Depends(get_d
         "pages": book.pages,
         "published_year": book.published_year,
         "is_available": book.is_available,
+        "borrowed_until": book.borrowed_until.isoformat() if book.borrowed_until else None,
         "created_at": book.created_at.isoformat() if book.created_at else None,
         "updated_at": book.updated_at.isoformat() if book.updated_at else None,
     }
