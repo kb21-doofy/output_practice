@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../contexts/AuthContext';
 import './Login.css';
 
 const Login: React.FC = () => {
   const navigate = useNavigate();
+  const { login } = useAuth();
   const [formData, setFormData] = useState({
-    email: '',
+    username: '',
     password: ''
   });
   const [loading, setLoading] = useState(false);
@@ -22,8 +24,8 @@ const Login: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (!formData.email.trim() || !formData.password.trim()) {
-      setError('メールアドレスとパスワードを入力してください');
+    if (!formData.username.trim() || !formData.password.trim()) {
+      setError('ユーザーネームとパスワードを入力してください');
       return;
     }
 
@@ -38,7 +40,7 @@ const Login: React.FC = () => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          email: formData.email,
+          username: formData.username,
           password: formData.password
         })
       });
@@ -47,8 +49,7 @@ const Login: React.FC = () => {
 
       if (response.ok) {
         // ログイン成功
-        localStorage.setItem('access_token', data.access_token);
-        localStorage.setItem('user', JSON.stringify(data.user));
+        login(data.access_token, data.user);
         alert(`ログイン成功！ようこそ、${data.user.name}さん`);
         navigate('/'); // メインページに遷移
       } else {
@@ -75,14 +76,14 @@ const Login: React.FC = () => {
           {error && <div className="error-message">{error}</div>}
 
           <div className="form-group">
-            <label htmlFor="email">メールアドレス</label>
+            <label htmlFor="username">ユーザーネーム</label>
             <input
-              type="email"
-              id="email"
-              name="email"
-              value={formData.email}
+              type="text"
+              id="username"
+              name="username"
+              value={formData.username}
               onChange={handleChange}
-              placeholder="admin@example.com"
+              placeholder="admin"
               required
             />
           </div>
@@ -107,8 +108,8 @@ const Login: React.FC = () => {
 
         <div className="login-footer">
           <p>テスト用アカウント:</p>
-          <p>Email: admin@example.com</p>
-          <p>Password: password</p>
+          <p>ユーザーネーム: admin</p>
+          <p>パスワード: password</p>
           <button 
             className="back-btn" 
             onClick={() => navigate('/')}

@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useAuth } from '../contexts/AuthContext'
 import type { Book } from '../types/Book'
 import BookList from '../components/BookList'
 import BookForm from '../components/BookForm'
@@ -7,6 +8,7 @@ import './Home.css'
 
 function Home() {
   const navigate = useNavigate()
+  const { user, logout } = useAuth()
   const [showForm, setShowForm] = useState(false)
   const [editingBook, setEditingBook] = useState<Book | undefined>(undefined)
   const [refreshTrigger, setRefreshTrigger] = useState(0)
@@ -32,8 +34,11 @@ function Home() {
     setEditingBook(undefined)
   }
 
-  const handleLogin = () => {
-    navigate('/login')
+  const handleLogout = () => {
+    if (window.confirm('ログアウトしますか？')) {
+      logout()
+      navigate('/login')
+    }
   }
 
   return (
@@ -41,8 +46,12 @@ function Home() {
       <header className="app-header">
         <h1>📚 本管理システム</h1>
         <div className="header-actions">
-          <button className="login-btn" onClick={handleLogin}>
-            ログイン
+          <div className="user-info">
+            <span className="welcome-text">ようこそ、{user?.name}さん</span>
+            <span className="username">(@{user?.username})</span>
+          </div>
+          <button className="logout-btn" onClick={handleLogout}>
+            ログアウト
           </button>
           <button className="add-book-btn" onClick={handleAddBook}>
             + 新しい本を追加

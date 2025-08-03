@@ -45,14 +45,14 @@ def verify_token(credentials: HTTPAuthorizationCredentials = Depends(security)):
     """JWTトークンを検証"""
     try:
         payload = jwt.decode(credentials.credentials, SECRET_KEY, algorithms=[ALGORITHM])
-        email: str = payload.get("sub")
-        if email is None:
+        username: str = payload.get("sub")
+        if username is None:
             raise HTTPException(
                 status_code=status.HTTP_401_UNAUTHORIZED,
                 detail="無効なトークンです",
                 headers={"WWW-Authenticate": "Bearer"},
             )
-        return email
+        return username
     except JWTError:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
@@ -62,27 +62,29 @@ def verify_token(credentials: HTTPAuthorizationCredentials = Depends(security)):
 
 # 簡易的なユーザーデータベース（実際の実装では本物のDBを使用）
 fake_users_db = {
-    "admin@example.com": {
+    "admin": {
+        "username": "admin",
         "email": "admin@example.com",
         "hashed_password": get_password_hash("password"),
         "name": "管理者"
     },
-    "user@example.com": {
+    "user": {
+        "username": "user",
         "email": "user@example.com", 
-        "hashed_password": get_password_hash("userpass"),
+        "hashed_password": get_password_hash("password"),
         "name": "一般ユーザー"
     }
 }
 
-def authenticate_user(email: str, password: str):
+def authenticate_user(username: str, password: str):
     """ユーザー認証"""
-    user = fake_users_db.get(email)
+    user = fake_users_db.get(username)
     if not user:
         return False
     if not verify_password(password, user["hashed_password"]):
         return False
     return user
 
-def get_user(email: str):
+def get_user(username: str):
     """ユーザー情報を取得"""
-    return fake_users_db.get(email)
+    return fake_users_db.get(username)

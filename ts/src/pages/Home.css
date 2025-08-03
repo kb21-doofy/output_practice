@@ -25,7 +25,27 @@
   align-items: center;
 }
 
+.user-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-right: 10px;
+}
+
+.welcome-text {
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 2px;
+}
+
+.username {
+  font-size: 12px;
+  opacity: 0.8;
+  font-weight: 300;
+}
+
 .login-btn,
+.logout-btn,
 .add-book-btn {
   background-color: rgba(255, 255, 255, 0.2);
   color: white;
@@ -39,9 +59,15 @@
   backdrop-filter: blur(10px);
 }
 
-.login-btn {
+.login-btn,
+.logout-btn {
   background-color: rgba(255, 255, 255, 0.1);
   border-color: rgba(255, 255, 255, 0.2);
+}
+
+.logout-btn:hover {
+  background-color: rgba(255, 107, 107, 0.3);
+  border-color: rgba(255, 107, 107, 0.5);
 }
 
 .login-btn:hover,
@@ -74,8 +100,23 @@ main {
   }
   
   .login-btn,
+  .logout-btn,
   .add-book-btn {
     font-size: 14px;
     padding: 10px 20px;
+  }
+  
+  .user-info {
+    align-items: center;
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+  
+  .welcome-text {
+    font-size: 14px;
+  }
+  
+  .username {
+    font-size: 11px;
   }
 }
