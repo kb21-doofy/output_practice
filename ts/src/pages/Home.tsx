@@ -48,7 +48,7 @@ function Home() {
         <div className="header-actions">
           <div className="user-info">
             <span className="welcome-text">ようこそ、{user?.name}さん</span>
-            <span className="username">(@{user?.username})</span>
+            <span className="username">({user?.email})</span>
           </div>
           <button className="logout-btn" onClick={handleLogout}>
             ログアウト

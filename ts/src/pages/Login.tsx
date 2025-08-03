@@ -7,7 +7,7 @@ const Login: React.FC = () => {
   const navigate = useNavigate();
   const { login } = useAuth();
   const [formData, setFormData] = useState({
-    username: '',
+    email: '',
     password: ''
   });
   const [loading, setLoading] = useState(false);
@@ -24,8 +24,8 @@ const Login: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (!formData.username.trim() || !formData.password.trim()) {
-      setError('ユーザーネームとパスワードを入力してください');
+    if (!formData.email.trim() || !formData.password.trim()) {
+      setError('メールアドレスとパスワードを入力してください');
       return;
     }
 
@@ -40,7 +40,7 @@ const Login: React.FC = () => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          username: formData.username,
+          email: formData.email,
           password: formData.password
         })
       });
@@ -76,14 +76,14 @@ const Login: React.FC = () => {
           {error && <div className="error-message">{error}</div>}
 
           <div className="form-group">
-            <label htmlFor="username">ユーザーネーム</label>
+            <label htmlFor="email">メールアドレス</label>
             <input
-              type="text"
-              id="username"
-              name="username"
-              value={formData.username}
+              type="email"
+              id="email"
+              name="email"
+              value={formData.email}
               onChange={handleChange}
-              placeholder="admin"
+              placeholder="admin@example.com"
               required
             />
           </div>
@@ -107,9 +107,22 @@ const Login: React.FC = () => {
         </form>
 
         <div className="login-footer">
-          <p>テスト用アカウント:</p>
-          <p>ユーザーネーム: admin</p>
-          <p>パスワード: password</p>
+          <div className="register-section">
+            <p>アカウントをお持ちでない方</p>
+            <button 
+              className="register-btn" 
+              onClick={() => navigate('/register')}
+            >
+              新規登録はこちら
+            </button>
+          </div>
+          
+          <div className="test-account-section">
+            <p>テスト用アカウント:</p>
+            <p>メール: admin@example.com</p>
+            <p>パスワード: password</p>
+          </div>
+          
           <button 
             className="back-btn" 
             onClick={() => navigate('/')}

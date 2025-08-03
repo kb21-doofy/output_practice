@@ -113,3 +113,6 @@ my-aws-project/
 ## データベース変更
 - \c {データベース名}
 
+# スクリプト実行にてテーブル作成(* app配下で実行)
+- python -m scripts.create_tables
+
