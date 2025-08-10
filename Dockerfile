@@ -9,8 +9,8 @@ RUN pip install uv
 # pyproject.tomlとuv.lockを先にコピー
 COPY pyproject.toml uv.lock ./
 
-# 仮想環境の作成と依存関係のインストール
-RUN uv venv && uv pip install -r <(uv pip freeze)
+# 依存関係のインストール
+RUN uv sync --frozen
 
 # アプリケーションのコードをコピー
 COPY . .
