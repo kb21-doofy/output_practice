@@ -18,5 +18,5 @@ COPY . .
 # FastAPIのポートを公開
 EXPOSE 8000
 
-# アプリの起動コマンド
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
+# アプリの起動コマンド（uv runを使用してuvicornを実行）
+CMD ["uv", "run", "uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
