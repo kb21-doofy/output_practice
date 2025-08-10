@@ -1,3 +1,17 @@
+
+# 開発環境の完全初期化（一回実行すればOK）
+make init
+
+# フロントエンド開発サーバー起動
+make dev
+
+# その他のコマンド
+make help  # 利用可能なコマンド一覧
+make down  # Docker環境停止
+make logs  # ログ表示
+make clean # 環境クリーンアップ
+
+
 # branch 運用!
 
 ## main 

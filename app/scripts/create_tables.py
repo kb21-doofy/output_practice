@@ -1,4 +1,10 @@
 # create_tables.py - テーブル作成スクリプト
+import sys
+import os
+
+# appディレクトリをPythonパスに追加
+sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
+
 from core.database import Base
 from domain.book import Book  # モデルをインポートしてBaseに登録
 from domain.user import User
