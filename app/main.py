@@ -3,9 +3,13 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
-from .api.book.book import router as book_router
-from .api.user.user import router as user_router
-from .api import auth
+import sys
+import os
+sys.path.append('/app')
+
+from app.api.book.book import router as book_router
+from app.api.user.user import router as user_router
+from app.api import auth
 
 app = FastAPI()
 
