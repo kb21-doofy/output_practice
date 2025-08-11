@@ -1,0 +1,13 @@
+/* Home.cssのスタイルをインポート（ヘッダーとナビゲーション） */
+@import './Home.css';
+
+.borrowed-books-page {
+  min-height: 100vh;
+  background-color: #f8f9fa;
+}
+
+.borrowed-books-page main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}

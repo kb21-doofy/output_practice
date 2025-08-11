@@ -1,0 +1,163 @@
+.borrowed-book-list {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.borrowed-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid #e0e0e0;
+}
+
+.borrowed-header h2 {
+  margin: 0;
+  color: #2c3e50;
+  font-size: 28px;
+}
+
+.borrowed-header p {
+  margin: 5px 0 0 0;
+  color: #7f8c8d;
+  font-size: 16px;
+}
+
+.refresh-button {
+  background-color: #3498db;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+.refresh-button:hover {
+  background-color: #2980b9;
+}
+
+.loading {
+  text-align: center;
+  padding: 40px;
+  font-size: 18px;
+  color: #7f8c8d;
+}
+
+.error {
+  text-align: center;
+  padding: 40px;
+  color: #e74c3c;
+  background-color: #fadbd8;
+  border-radius: 8px;
+  margin: 20px 0;
+}
+
+.error button {
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.error button:hover {
+  background-color: #c0392b;
+}
+
+.no-borrowed-books {
+  text-align: center;
+  padding: 60px 20px;
+  background-color: #f8f9fa;
+  border-radius: 12px;
+  border: 2px dashed #dee2e6;
+}
+
+.no-borrowed-books p {
+  font-size: 18px;
+  color: #6c757d;
+  margin: 0;
+}
+
+.borrowed-books-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.borrowed-book-card {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.borrowed-book-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.borrowed-book-card.overdue {
+  border: 2px solid #e74c3c;
+  background-color: #fdf2f2;
+}
+
+.borrowed-info {
+  padding: 15px;
+  background-color: #f8f9fa;
+  border-top: 1px solid #e9ecef;
+}
+
+.due-date {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+}
+
+.due-date strong {
+  color: #495057;
+}
+
+.overdue-date {
+  color: #e74c3c;
+  font-weight: bold;
+}
+
+.overdue-label {
+  background-color: #e74c3c;
+  color: white;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+/* レスポンシブデザイン */
+@media (max-width: 768px) {
+  .borrowed-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .borrowed-header h2 {
+    font-size: 24px;
+  }
+
+  .borrowed-books-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .borrowed-book-list {
+    padding: 15px;
+  }
+}

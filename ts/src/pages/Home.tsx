@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
 import type { Book } from '../types/Book'
 import BookList from '../components/BookList'
@@ -45,6 +45,14 @@ function Home() {
     <div className="home">
       <header className="app-header">
         <h1>📚 本管理システム</h1>
+        <nav className="main-navigation">
+          <Link to="/" className="nav-link active">
+            📖 全ての本
+          </Link>
+          <Link to="/borrowed" className="nav-link">
+            📚 貸出中の本
+          </Link>
+        </nav>
         <div className="header-actions">
           <div className="user-info">
             <span className="welcome-text">ようこそ、{user?.name}さん</span>

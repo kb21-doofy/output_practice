@@ -57,4 +57,10 @@ export const bookAPI = {
     const response = await api.post(`/api/books/${id}/return`);
     return response.data;
   },
+
+  // 貸出中の本一覧を取得
+  getBorrowedBooks: async (): Promise<Book[]> => {
+    const response = await api.get('/api/books/borrowed');
+    return response.data;
+  },
 };

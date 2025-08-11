@@ -117,3 +117,6 @@ class BookService:
         self.db.commit()
         self.db.refresh(book)
         return book
+    def get_borrowed_books(self) -> List[Book]:
+        """貸出中の本一覧を取得"""
+        return self.db.query(Book).filter(Book.is_available == False).all()
